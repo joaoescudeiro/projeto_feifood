@@ -30,7 +30,7 @@ public class ControleLogin {
         Usuario usuario = new Usuario(null,tela1.getInputUsuario().getText(),tela1.getInputSenha().getText(),null,null);
         Conexao conexao = new Conexao();
         try{
-            Connection conn = conexao.getConnection();
+            Connection conn = conexao.getConexao();
             UsuarioDAO dao = new UsuarioDAO(conn);
             ResultSet res = dao.consultar(usuario);
             if(res.next()){

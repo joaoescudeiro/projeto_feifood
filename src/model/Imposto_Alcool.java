@@ -8,6 +8,6 @@ package model;
  *
  * @author Escudeiro
  */
-public class Imposto_Alcool {
-    
+public interface Imposto_Alcool {
+    double calcularImpostoAlcool();
 }

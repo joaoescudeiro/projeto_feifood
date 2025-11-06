@@ -18,10 +18,13 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
+    private Usuario usuarioLogado;
+    
     public Menu(Usuario usuario) {
         initComponents();
         lbBemVindo.setText((usuario.getNome()));
         c = new ControleMenu(this, usuario);
+        this.usuarioLogado = usuario;
     }
 
     /**
@@ -61,6 +64,11 @@ public class Menu extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton3.setText("Buscar alimento");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton4.setText("Meus pedidos");
@@ -111,6 +119,12 @@ public class Menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private Usuario usuario;
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        new BuscarAlimento(usuarioLogado).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

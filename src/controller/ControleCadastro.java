@@ -36,7 +36,7 @@ public class ControleCadastro {
         
         Conexao conexao = new Conexao();
         try {
-            Connection conn = conexao.getConnection();
+            Connection conn = conexao.getConexao();
             UsuarioDAO dao = new UsuarioDAO(conn);
             dao.inserir(usuario);
             JOptionPane.showMessageDialog(tela3, "Usuario Cadastrado!","Aviso", 

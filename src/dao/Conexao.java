@@ -13,10 +13,17 @@ import java.sql.SQLException;
  * @author Escudeiro
  */
 public class Conexao {
-    public Connection getConnection() throws SQLException{
-        Connection conexao = DriverManager.getConnection(
-            "jdbc:postgresql://localhost:5432/usuarios",
-            "postgres", "123");
-        return conexao;
+
+    private static final String url = "jdbc:postgresql://localhost:5432/feifood";
+    private static final String user = "postgres";
+    private static final String senha = "123";
+
+    public static Connection getConexao() {
+        try {
+            return DriverManager.getConnection(url, user, senha);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao conectar ao banco de dados!");
+        }
     }
 }
