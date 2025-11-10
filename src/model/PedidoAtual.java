@@ -67,11 +67,22 @@ public class PedidoAtual {
         recalcularTotal();
     }
 
-    private static void recalcularTotal() {
+     private static void recalcularTotal() {
         double total = 0.0;
+        double impostoTotal = 0.0;
+        
         for (PedidoItem item : itensDoPedido) {
             total += item.getSubtotal();
+            
+            if (item.getAlimento() instanceof Bebida) {
+                Bebida bebida = (Bebida) item.getAlimento();
+                if (bebida.isAlcoolica()) {
+                    impostoTotal += bebida.calcularImpostoAlcool() * item.getQuantidade();
+                }
+            }
         }
+        
+        total += impostoTotal;
         pedidoEmAndamento.setTotal(total);
     }
     
