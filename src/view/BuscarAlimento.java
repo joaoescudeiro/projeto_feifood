@@ -9,6 +9,7 @@ import dao.AlimentoDAO;
 import model.Alimento;
 import model.Comida;
 import model.Bebida;
+import model.PedidoAtual;
 
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -30,6 +31,7 @@ public class BuscarAlimento extends javax.swing.JFrame {
     public BuscarAlimento(Usuario usuario) {
         initComponents();
         this.usuarioLogado = usuario;
+       
     }
     
     private void buscarAlimentos() {
@@ -180,8 +182,39 @@ public class BuscarAlimento extends javax.swing.JFrame {
             return;
         }
 
-        String nome = tabelaAlimentos.getValueAt(selectedRow, 1).toString();
-        JOptionPane.showMessageDialog(this, "Alimento \"" + nome + "\" adicionado ao pedido");
+        try {
+            int alimentoId = (int) tabelaAlimentos.getValueAt(selectedRow, 0);
+            
+            Alimento alimento = alimentoDAO.buscarPorId(alimentoId);
+            
+            if (alimento == null) {
+                JOptionPane.showMessageDialog(this, "Erro: Alimento não encontrado no banco de dados.");
+                return;
+            }
+            
+            String quantidadeStr = JOptionPane.showInputDialog(this, "Quantas unidades de " + alimento.getNome() + " você deseja adicionar?", "Adicionar Quantidade", JOptionPane.QUESTION_MESSAGE);
+            
+            if (quantidadeStr == null || quantidadeStr.trim().isEmpty()) {
+                return;
+            }
+            
+            int quantidade = Integer.parseInt(quantidadeStr.trim());
+            
+            if (quantidade <= 0) {
+                JOptionPane.showMessageDialog(this, "A quantidade deve ser maior que zero.");
+                return;
+            }
+            
+            PedidoAtual.adicionarItem(alimento, quantidade);
+            
+            JOptionPane.showMessageDialog(this, quantidade + "x " + alimento.getNome() + " adicionado ao pedido.\nTotal parcial: R$ " + String.format("%.2f", PedidoAtual.getPedidoEmAndamento().getTotal()));
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Quantidade inválida. Digite um número inteiro.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocorreu um erro ao adicionar o item: " + e.getMessage());
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnAdicionarPedidoActionPerformed
 
     /**

@@ -21,9 +21,15 @@ import javax.swing.JOptionPane;
  */
 public class ControleCadastro {
      private CadastroUsuario tela3;
+    private Usuario usuarioParaEdicao;
     
     public ControleCadastro(CadastroUsuario tela3){
         this.tela3 = tela3;
+    }
+    
+    public ControleCadastro(CadastroUsuario tela3, Usuario usuarioParaEdicao){
+        this.tela3 = tela3;
+        this.usuarioParaEdicao = usuarioParaEdicao;
     }
     
     public void cadastrarUsuario(){
@@ -32,18 +38,33 @@ public class ControleCadastro {
         String senha = tela3.getInputSenha().getText();
         String endereco = tela3.getInputEndereco().getText();
         String telefone = tela3.getInputTelefone().getText();
-        Usuario usuario = new Usuario(nome, user, senha, endereco, telefone);
         
         Conexao conexao = new Conexao();
         try {
             Connection conn = conexao.getConexao();
             UsuarioDAO dao = new UsuarioDAO(conn);
-            dao.inserir(usuario);
-            JOptionPane.showMessageDialog(tela3, "Usuario Cadastrado!","Aviso", 
-                                        JOptionPane.INFORMATION_MESSAGE);
+            
+            if (usuarioParaEdicao == null) {
+                Usuario novoUsuario = new Usuario(nome, user, senha, endereco, telefone);
+                dao.inserir(novoUsuario);
+                JOptionPane.showMessageDialog(tela3, "Usuário Cadastrado!","Aviso", 
+                                            JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                usuarioParaEdicao.setNome(nome);
+                usuarioParaEdicao.setUsuario(user);
+                usuarioParaEdicao.setSenha(senha);
+                usuarioParaEdicao.setEndereco(endereco);
+                usuarioParaEdicao.setTelefone(telefone);
+                
+                dao.atualizar(usuarioParaEdicao);
+                JOptionPane.showMessageDialog(tela3, "Perfil Atualizado!","Aviso", 
+                                            JOptionPane.INFORMATION_MESSAGE);
+            }
+            
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(tela3, "Usuário não cadastrado!","Erro", 
+            JOptionPane.showMessageDialog(tela3, "Erro ao processar o usuário!","Erro", 
                                         JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
     }
 }

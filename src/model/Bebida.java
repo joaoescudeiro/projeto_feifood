@@ -33,7 +33,7 @@ public class Bebida extends Alimento implements Imposto_Alcool {
     @Override
     public double calcularImpostoAlcool() {
         if (alcoolica) {
-            return getPreco() * 0.25; // 25% de imposto
+            return getPreco() * 0.25;
         }
         return 0;
     }

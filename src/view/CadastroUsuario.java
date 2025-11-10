@@ -5,6 +5,7 @@
 package view;
 
 import controller.ControleCadastro;
+import model.Usuario;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
@@ -19,9 +20,27 @@ public class CadastroUsuario extends javax.swing.JFrame {
     /**
      * Creates new form CadastroUsuario
      */
+    private Usuario usuarioParaEdicao;
+    
     public CadastroUsuario() {
         initComponents();
         c = new ControleCadastro(this);
+        btCadastrar.setText("Cadastrar");
+    }
+    
+    public CadastroUsuario(Usuario usuario) {
+        initComponents();
+        this.usuarioParaEdicao = usuario;
+        c = new ControleCadastro(this, usuario);
+        
+        inputNome.setText(usuario.getNome());
+        inputUsuario.setText(usuario.getUsuario());
+        inputSenha.setText(usuario.getSenha());
+        inputTelefone.setText(usuario.getTelefone());
+        inputEndereco.setText(usuario.getEndereco());
+        
+        btCadastrar.setText("Alterar");
+        jLabel1.setText("Alterar Perfil");
     }
 
     public JButton getBtCadastrar() {

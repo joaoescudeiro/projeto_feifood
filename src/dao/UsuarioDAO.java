@@ -40,16 +40,19 @@ public class UsuarioDAO {
                       + usuario.getTelefone()   + "')";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.execute();
-        conn.close();
     }
 
     public void atualizar(Usuario usuario) throws SQLException{
-        String sql = "update tbusuarios set senha =  ? where usuario = ?";
-        PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, usuario.getSenha());
-        statement.setString(2, usuario.getUsuario());
-        statement.execute();
-        conn.close();
+        String sql = "UPDATE tbusuarios SET nome = ?, usuario = ?, senha = ?, endereco = ?, telefone = ? WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setString(1, usuario.getNome());
+            statement.setString(2, usuario.getUsuario());
+            statement.setString(3, usuario.getSenha());
+            statement.setString(4, usuario.getEndereco());
+            statement.setString(5, usuario.getTelefone());
+            statement.setInt(6, usuario.getId());
+            statement.executeUpdate();
+        }
     }
     
     public void remover(Usuario usuario) throws SQLException{
@@ -57,6 +60,5 @@ public class UsuarioDAO {
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, usuario.getUsuario());
         statement.execute();
-        conn.close();
     }
 }

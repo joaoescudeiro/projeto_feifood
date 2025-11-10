@@ -23,7 +23,7 @@ public class Conexao {
             return DriverManager.getConnection(url, user, senha);
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Erro ao conectar ao banco de dados!");
+            throw new RuntimeException("Erro ao conectar ao banco de dados");
         }
     }
 }
