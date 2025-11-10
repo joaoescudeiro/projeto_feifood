@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  * @author Escudeiro
  */
 public class ControleCadastro {
-     private CadastroUsuario tela3;
+    private CadastroUsuario tela3;
     private Usuario usuarioParaEdicao;
     
     public ControleCadastro(CadastroUsuario tela3){

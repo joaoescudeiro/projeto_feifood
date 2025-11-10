@@ -6,6 +6,7 @@ package view;
 
 import controller.ControleLogin;
 import javax.swing.JButton;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
@@ -22,6 +23,8 @@ public class LoginUsuario extends javax.swing.JFrame {
     public LoginUsuario() {
         initComponents();
         c = new ControleLogin(this);
+        setLocationRelativeTo(null);
+        setTitle("Fazer login");
     }
 
     public JButton getBtLogar() {
@@ -44,7 +47,7 @@ public class LoginUsuario extends javax.swing.JFrame {
         return inputSenha;
     }
 
-    public void setInputSenha(JTextField inputSenha) {
+    public void setInputSenha(JPasswordField inputSenha) {
         this.inputSenha = inputSenha;
     }
 
@@ -52,7 +55,7 @@ public class LoginUsuario extends javax.swing.JFrame {
         return inputUsuario;
     }
 
-    public void setInputUsuario(JTextField inputUsuario) {
+    public void setInputUsuario(JPasswordField inputUsuario) {
         this.inputUsuario = inputUsuario;
     }
 
@@ -71,9 +74,9 @@ public class LoginUsuario extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         inputUsuario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        inputSenha = new javax.swing.JTextField();
         btLogar = new javax.swing.JButton();
         btVoltar = new javax.swing.JButton();
+        inputSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,13 +142,13 @@ public class LoginUsuario extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(45, 45, 45)
+                    .addComponent(jLabel4)
+                    .addComponent(inputSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -191,7 +194,7 @@ public class LoginUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btLogar;
     private javax.swing.JButton btVoltar;
-    private javax.swing.JTextField inputSenha;
+    private javax.swing.JPasswordField inputSenha;
     private javax.swing.JTextField inputUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

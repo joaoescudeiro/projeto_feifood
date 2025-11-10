@@ -26,12 +26,16 @@ public class CadastroUsuario extends javax.swing.JFrame {
         initComponents();
         c = new ControleCadastro(this);
         btCadastrar.setText("Cadastrar");
+        setLocationRelativeTo(null);
+        setTitle("Fazer cadastro");
     }
     
     public CadastroUsuario(Usuario usuario) {
         initComponents();
         this.usuarioParaEdicao = usuario;
         c = new ControleCadastro(this, usuario);
+        setLocationRelativeTo(null);
+        setTitle("Alterar perfil");
         
         inputNome.setText(usuario.getNome());
         inputUsuario.setText(usuario.getUsuario());

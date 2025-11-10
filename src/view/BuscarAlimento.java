@@ -31,7 +31,8 @@ public class BuscarAlimento extends javax.swing.JFrame {
     public BuscarAlimento(Usuario usuario) {
         initComponents();
         this.usuarioLogado = usuario;
-       
+        setLocationRelativeTo(null);
+        setTitle("Buscar Alimento");
     }
     
     private void buscarAlimentos() {

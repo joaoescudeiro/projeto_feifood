@@ -47,17 +47,18 @@ public class MeuPedidos extends javax.swing.JFrame {
             e.printStackTrace();
         }
         
-        // Configura a ComboBox de avaliação
         configurarComboBoxAvaliacao();
         
         carregarPedidos();
+        
+        setLocationRelativeTo(null);
+        setTitle("Meus pedidos");
     }
     
     private void carregarPedidos() {
         DefaultTableModel model = (DefaultTableModel) tabelaPedidos.getModel();
         model.setRowCount(0);
 
-        // 1. Adicionar o pedido em andamento (carrinho)
         if (PedidoAtual.temItens()) {
             Pedido pedidoAtual = PedidoAtual.getPedidoEmAndamento();
             List<PedidoItem> itens = PedidoAtual.getItensDoPedido();
@@ -65,7 +66,7 @@ public class MeuPedidos extends javax.swing.JFrame {
             StringBuilder nomes = new StringBuilder();
             for (PedidoItem item : itens) {
                 Alimento a = item.getAlimento();
-                if (a != null) { // Adiciona verificação de nulidade
+                if (a != null) {
                     nomes.append(a.getNome())
                          .append(" (x")
                          .append(item.getQuantidade())
@@ -81,14 +82,13 @@ public class MeuPedidos extends javax.swing.JFrame {
             }
             
             model.addRow(new Object[]{
-                "CARRINHO", // ID especial para o pedido em andamento
+                "CARRINHO",
                 String.format("R$ %.2f", pedidoAtual.getTotal()),
                 "EM ANDAMENTO",
                 nomes.toString()
             });
         }
         
-        // 2. Adicionar os pedidos finalizados do banco de dados
         List<Pedido> pedidos = pedidoDAO.listarPedidosPorUsuario(usuarioLogado);
 
         for (Pedido p : pedidos) {
@@ -97,7 +97,7 @@ public class MeuPedidos extends javax.swing.JFrame {
 
             for (PedidoItem item : itens) {
                 Alimento a = item.getAlimento();
-                if (a != null) { // Adiciona verificação de nulidade
+                if (a != null) {
                     nomes.append(a.getNome())
                          .append(" (x")
                          .append(item.getQuantidade())
@@ -181,7 +181,7 @@ public class MeuPedidos extends javax.swing.JFrame {
         
         try {
             int idPedido = (int) idObj;
-            int avaliacao = jComboBox1.getSelectedIndex() + 1; // 0-indexed para 1-5 estrelas
+            int avaliacao = jComboBox1.getSelectedIndex() + 1;
             
             pedidoDAO.atualizarAvaliacao(idPedido, avaliacao);
             JOptionPane.showMessageDialog(this, "Pedido ID: " + idPedido + " avaliado com " + avaliacao + " estrelas!");
@@ -315,7 +315,7 @@ public class MeuPedidos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 	    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-	        // Ação da ComboBox não é necessária, pois a avaliação é feita pelo botão
+
 	    }//GEN-LAST:event_jComboBox1ActionPerformed
 	
 	    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
