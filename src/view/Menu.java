@@ -54,6 +54,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         lbBemVindo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbBemVindo.setText("nome");

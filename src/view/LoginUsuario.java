@@ -79,6 +79,7 @@ public class LoginUsuario extends javax.swing.JFrame {
         inputSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Login");
