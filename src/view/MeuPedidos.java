@@ -240,9 +240,19 @@ public class MeuPedidos extends javax.swing.JFrame {
 
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnExcluir.setText("Excluir pedido selecionado");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnAvaliar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAvaliar.setText("Avaliar");
+        btnAvaliar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvaliarActionPerformed(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
