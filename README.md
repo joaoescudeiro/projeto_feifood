@@ -1,4 +1,4 @@
-# Projeto FEIFood - Projeto da Disciplina CCM310
+# Projeto FEIFood - Programação orientada a objetos
 
 **Nome:** João Vitor Alves Escudeiro 24.224.010-9
 
@@ -66,3 +66,4 @@ A interface do programa foi feita utilizando os **JFrames** do NetBeans, e seus 
 ## 6. Conclusão
 
 A partir do desenvolvimento deste projeto foram aplicados com sucesso vários conceitos de desenvolvimento de software e programação orientada a objetos, incluindo arquitetura **MVC** e persistência de dados com **PostgreSQL**. A estrutura atual do projeto, com a separação de *packages*, permite futuras expansões.
+
